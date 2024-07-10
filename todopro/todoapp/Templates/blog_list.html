@@ -7,16 +7,20 @@
         <a href="{% url 'add_blog' %}" class="btn btn-primary mb-3">Add New Blog</a>
     </div>
     <div class="row">
-        {% for blog in blogs %}
-        <div class="col-md-4 mb-4">
-            <div class="card">
+        <div class="col-md-8 offset-md-2">
+            {% for blog in blogs %}
+            <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">{{ blog.title }}</h5>
+                    <h2 class="card-title">{{ blog.title }}</h2>
                     <p class="card-text">{{ blog.description }}</p>
+                    <p class="text-muted small">
+                        <strong>Author:</strong> {{ blog.author.first_name }} {{ blog.author.last_name }} &nbsp;|&nbsp; 
+                        {{ blog.created_at|timesince }} ago
+                    </p>
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
 </div>
 {% endblock %}

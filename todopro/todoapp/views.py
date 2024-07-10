@@ -45,7 +45,7 @@ def delete_task(request, pk):
     return render(request, 'task_confirm_delete.html', context)
 
 def blog_list(request):
-    blogs = Blog.objects.all()
+    blogs = Blog.objects.all().order_by('-created_at')
     return render(request, 'blog_list.html', {'blogs': blogs})
 
 @login_required
@@ -53,13 +53,13 @@ def add_blog(request):
     if request.method == 'POST':
         form = BlogForm(request.POST)
         if form.is_valid():
-            form.save()
+            new_blog = form.save(commit=False)
+            new_blog.author = request.user
+            new_blog.save()
             return redirect('blog_list')
     else:
         form = BlogForm()
     return render(request, 'add_blog.html', {'form': form})
-
-
 
 def user_login(request):
     if request.method == 'POST':
