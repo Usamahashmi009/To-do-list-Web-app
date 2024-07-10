@@ -11,6 +11,7 @@ The To-do List Web App allows users to create, view, and delete their tasks effi
 - Create new tasks
 - View task details
 - Delete tasks
+- User can Add Blog
 
 ## How to Run
 - Go to directory todopro
