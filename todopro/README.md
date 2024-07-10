@@ -12,6 +12,13 @@ The To-do List Web App allows users to create, view, and delete their tasks effi
 - View task details
 - Delete tasks
 
+## How to Run
+- Go to directory todopro
+- run the following commands:
+- python manage.py makemigrations
+- python manage.py migrate
+- python manage.py runserver
+
 ## Installation
 
 1. Clone the repository:

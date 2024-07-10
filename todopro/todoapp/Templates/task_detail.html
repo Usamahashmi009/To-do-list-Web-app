@@ -1,3 +1,4 @@
+{% extends "base.html" %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,10 +8,12 @@
     <title>{{ task.heading }}</title>
 </head>
 <body>
+    {% block content %}
     <div class="container mt-5">
         <h1>{{ task.heading }}</h1>
         <p>{{ task.details }}</p>
         <a href="{% url 'task_list' %}" class="btn btn-primary">Back to List</a>
     </div>
+    {% endblock %}
 </body>
 </html>

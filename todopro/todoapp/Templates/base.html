@@ -1,12 +1,10 @@
-{% extends "base.html" %}
-{% load form_tags %}
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List</title>
+    <title>{% block title %}Todo App{% endblock %}</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
@@ -64,46 +62,38 @@
     </style>
 </head>
 <body>
-    {% block content %}
-    <div class="container">
-        <div class="text-center">
-            <h1 class="mb-4" style="font-weight: bold; color: #007bff;">Done task List</h1>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">To-Do App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'task_list' %}">Tasks</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog_list' %}">Blogs</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register' %}">Register</a>
+                </li>
+                {% endif %}
+            </ul>
         </div>
-        <div class="row mb-4">
-            <div class="col">
-                <ul class="list-group">
-                    {% for task in tasks %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a href="{% url 'task_detail' task.pk %}">{{ task.heading }}</a>
-                        <form action="{% url 'delete_task' task.pk %}" method="post">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-sm ml-2 btn-delete">Delete</button>
-                        </form>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <h2 class="mb-3">Add New Task</h2>
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="id_heading">Heading</label>
-                        {{ form.heading|add_class:"form-control" }}
-                    </div>
-                    <div class="form-group">
-                        <label for="id_details">Details</label>
-                        {{ form.details|add_class:"form-control form-control-sm" }} {# Adding form-control-sm class here #}
-                    </div>
-                    <button type="submit" class="btn btn-primary">Add Task</button>
-                </form>
-            </div>
-        </div>
+    </nav>
+    <div class="container mt-4">
+        {% block content %}
+        {% endblock %}
     </div>
-    {% endblock %}
-    <!-- Add Bootstrap JS and dependencies -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
