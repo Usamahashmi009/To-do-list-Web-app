@@ -61,6 +61,17 @@ def add_blog(request):
         form = BlogForm()
     return render(request, 'add_blog.html', {'form': form})
 
+def profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('blog_list')
+    else:
+        form = ProfileForm(instance=request.user)
+    return render(request, 'profile.html', {'form': form})
+
+
 def user_login(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, data=request.POST)
