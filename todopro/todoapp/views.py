@@ -91,6 +91,7 @@ def view_profile(request, user_id):
     return render(request, 'view_profile.html', context)
 
 
+
 def user_login(request):
     if request.method == 'POST':
         form = CustomAuthenticationForm(request, data=request.POST)

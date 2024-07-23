@@ -1,26 +1,92 @@
-{% extends 'base.html' %}
-
-{% block content %}
-<div class="container mt-5">
-    <div class="card shadow">
-        <div class="card-header">
-            <h3>{{ profile_user.first_name }} {{ profile_user.last_name }}</h3>
+{% extends "base.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>View Profile</title>
+    <!-- Add Bootstrap CSS link here -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+        .profile-header {
+            text-align: center;
+            margin-bottom: 40px;
+            background-color: #007bff;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .profile-header img {
+            border-radius: 50%;
+            max-width: 150px;
+            margin-bottom: 15px;
+            border: 5px solid white;
+        }
+        .profile-section {
+            margin-bottom: 20px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .profile-section h4 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+        .profile-section p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    {% block content %}
+    <div class="container mt-5">
+        <div class="profile-header">
+            <img src="{{ profile_user.profile_picture.url }}" alt="Profile Picture" class="img-thumbnail">
+            <h2>{{ profile_user.first_name }} {{ profile_user.last_name }}</h2>
+            <p>{{ profile_user.email }}</p>
         </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-4">
-                    {% if profile_user.profile_picture %}
-                        <img src="{{ profile_user.profile_picture.url }}" class="img-fluid rounded" alt="Profile Picture">
-                    {% else %}
-                        <img src="https://via.placeholder.com/150" class="img-fluid rounded" alt="Profile Picture">
-                    {% endif %}
-                </div>
-                <div class="col-md-8">
-                    <p><strong>Email:</strong> {{ profile_user.email }}</p>
-                    <p><strong>About Me:</strong> {{ profile_user.about_me }}</p>
-                </div>
-            </div>
+        <div class="profile-section">
+            <h4>About Me</h4>
+            <p>{{ profile_user.about_me }}</p>
+        </div>
+        <div class="profile-section">
+            <h4>Skills</h4>
+            <p>{{ profile_user.skills }}</p>
+        </div>
+        <div class="profile-section">
+            <h4>Work Experience</h4>
+            <p>{{ profile_user.work_experience }}</p>
+        </div>
+        <div class="profile-section">
+            <h4>Education</h4>
+            <p>{{ profile_user.education }}</p>
+        </div>
+        <div class="profile-section">
+            <h4>Certifications</h4>
+            <p>{{ profile_user.certifications }}</p>
+        </div>
+        <div class="profile-section">
+            <h4>Awards</h4>
+            <p>{{ profile_user.awards }}</p>
+        </div>
+        <div class="profile-section">
+            <h4>Publications</h4>
+            <p>{{ profile_user.publications }}</p>
+        </div>
+        <div class="profile-section">
+            <h4>Volunteer Experience</h4>
+            <p>{{ profile_user.volunteer_experience }}</p>
+        </div>
+        <div class="profile-section">
+            <h4>Hobbies and Interests</h4>
+            <p>{{ profile_user.hobbies_and_interests }}</p>
         </div>
     </div>
-</div>
-{% endblock %}
+    {% endblock %}
+</body>
+</html>

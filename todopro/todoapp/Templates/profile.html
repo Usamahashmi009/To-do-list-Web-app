@@ -24,6 +24,42 @@
                     <div class="col-md-8">
                         <p><strong>Email:</strong> {{ user.email }}</p>
                         <p><strong>About Me:</strong> {{ user.about_me }}</p>
+                        <!-- Additional Profile Information -->
+                <div class="profile-section">
+                    <h4>Skills</h4>
+                    <p>{{ user.skills }}</p>
+                </div>
+                <div class="profile-section">
+                    <h4>Work Experience</h4>
+                    <p>{{ user.work_experience }}</p>
+                </div>
+                <div class="profile-section">
+                    <h4>Education</h4>
+                    <p>{{ user.education }}</p>
+                </div>
+                <div class="profile-section">
+                    <h4>Certifications</h4>
+                    <p>{{ user.certifications }}</p>
+                </div>
+                <div class="profile-section">
+                    <h4>Awards</h4>
+                    <p>{{ user.awards }}</p>
+                </div>
+                <div class="profile-section">
+                    <h4>Publications</h4>
+                    <p>{{ user.publications }}</p>
+                </div>
+                <div class="profile-section">
+                    <h4>Volunteer Experience</h4>
+                    <p>{{ user.volunteer_experience }}</p>
+                </div>
+                <div class="profile-section">
+                    <h4>Hobbies and Interests</h4>
+                    <p>{{ user.hobbies_and_interests }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
                         <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
                     </div>
                 </div>

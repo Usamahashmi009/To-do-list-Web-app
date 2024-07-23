@@ -29,6 +29,14 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     # New fields for the "About Me" section
     about_me = models.TextField(blank=True, null=True)
     profile_picture = models.ImageField(upload_to='profile_pictures/', blank=True, null=True)
+    skills = models.TextField(blank=True, null=True)
+    work_experience = models.TextField(blank=True, null=True)
+    education = models.TextField(blank=True, null=True)
+    certifications = models.TextField(blank=True, null=True)
+    awards = models.TextField(blank=True, null=True)
+    publications = models.TextField(blank=True, null=True)
+    volunteer_experience = models.TextField(blank=True, null=True)
+    hobbies_and_interests = models.TextField(blank=True, null=True)
 
     objects = CustomUserManager()
 
