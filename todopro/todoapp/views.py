@@ -71,6 +71,25 @@ def profile(request):
         form = ProfileForm(instance=request.user)
     return render(request, 'profile.html', {'form': form})
 
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # Redirect to a profile view page
+    else:
+        form = ProfileForm(instance=request.user)
+    return render(request, 'edit_profile.html', {'form': form})
+
+@login_required
+def view_profile(request, user_id):
+    user = get_object_or_404(CustomUser, id=user_id)
+    context = {
+        'profile_user': user,
+    }
+    return render(request, 'view_profile.html', context)
+
 
 def user_login(request):
     if request.method == 'POST':

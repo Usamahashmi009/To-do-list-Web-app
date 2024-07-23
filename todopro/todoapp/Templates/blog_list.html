@@ -14,7 +14,10 @@
                     <h2 class="card-title">{{ blog.title }}</h2>
                     <p class="card-text">{{ blog.description }}</p>
                     <p class="text-muted small">
-                        <strong>Author:</strong> {{ blog.author.first_name }} {{ blog.author.last_name }} &nbsp;|&nbsp; 
+                        <strong>Author:</strong> 
+                        <a href="{% url 'view_profile' blog.author.id %}">
+                            {{ blog.author.first_name }} {{ blog.author.last_name }}
+                        </a> &nbsp;|&nbsp; 
                         {{ blog.created_at|timesince }} ago
                     </p>
                 </div>
